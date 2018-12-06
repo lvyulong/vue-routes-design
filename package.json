@@ -1,7 +1,7 @@
 {
   "name": "vue-routes-design",
   "version": "1.0.0",
-  "description": "vue-router路由的写法太繁琐，如果系统页面很多，会导致路由文件的代码篇幅极大，不好维护。此项目的目的就是为了简化路由的写法。",
+  "description": "简化vue-router的路由配置",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js"
