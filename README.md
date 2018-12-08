@@ -147,6 +147,7 @@ const config = {
 
 #### 2、webpack配置文件
 本插件对webpack的配置有一个特殊要求，即在webpack配置文件中对src目录定义一个别名。请在自己的webpack配置文件的相应位置加上这行代码。
+因为作者的项目中，webpack配置文件是在build/base.js下，所以路径写的是path.resolve(__dirname, '../src/')，使用者需要根据自己的项目目录稍作调整。
 ```javascript
         ...
       resolve:{
