@@ -220,4 +220,4 @@ const config = {
     
 ### 三、演示demo
 
-如果还不是很明白，请看演示demo(https://github.com/lvyulong/vue-system)。如果您觉得该项目还有那么点意思，请给个star，多谢！！！
+如果还不是很明白，请看演示[demo](https://github.com/lvyulong/vue-system)。如果您觉得该项目还有那么点意思，请给个star，多谢！！！
