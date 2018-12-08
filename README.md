@@ -140,7 +140,12 @@ const config = {
 默认使用者已经对vue框架以及webpack有了一些了解，并且已经对vue-cli默认生成的项目结构有过至少一面之缘。
 本插件的用法需要你对自己的项目做出以下调整。
 
-#### 1、webpack配置文件
+#### 1、下载
+```javascript
+    npm install vue-routes-design
+```
+
+#### 2、webpack配置文件
 本插件对webpack的配置有一个特殊要求，即在webpack配置文件中对src目录定义一个别名。请在自己的webpack配置文件的相应位置加上这行代码。
 ```javascript
         ...
@@ -151,42 +156,68 @@ const config = {
       },
       ...
 ```
-
-#### 2、路由配置以及目录结构
-本插件要求所有的路由组件必须放置在src/views文件夹下，并需按照父子路由的名称进行放置组件文件。
+#### 3、main.js中引用
 ```javascript
-const config = {
-    default: 'app.user.index',
-    routes: [
-        // 登陆
-        {state: 'login'},
-
-        // 应用主体
-        {state: 'app', defaultLink: 'app.user.index'},
-
-        // 我的账户
-        {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
-        {state: 'app.user.index'},
-        {state: 'app.user.new'},
-        {state: 'app.user.edit', params: '/:id'},
-
-        // demo1
-        {state: 'app.demo1', type: 'blank'},
-        // demo1.1
-        {state: 'app.demo1.demo11', type: 'blank'},
-        {state: 'app.demo1.demo11.index'},
-        {state: 'app.demo1.demo11.new'},
-        {state: 'app.demo1.demo11.edit', params: '/:id'},
-        // demo1.2
-        {state: 'app.demo1.demo12', type: 'blank'},
-        {state: 'app.demo1.demo12.index'},
-
-    ]
-};
+    import Vue from 'vue';
+    import Router from 'vue-router';
+    import routesDesign from 'vue-routes-design';
+    import main from 'app/main.vue';
+    Vue.use(Router);
+    
+    // config其实应该独立为一个配置文件，import进来，此处只是为了方便演示才写到此处
+    const config = {
+        default: 'app.user.index',
+        routes: [
+            // 登陆
+            {state: 'login'},
+    
+            // 应用主体
+            {state: 'app', defaultLink: 'app.user.index'},
+    
+            // 我的账户
+            {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
+            {state: 'app.user.index'},
+            {state: 'app.user.new'},
+            {state: 'app.user.edit', params: '/:id'},
+    
+            // demo1
+            {state: 'app.demo1', type: 'blank'},
+            // demo1.1
+            {state: 'app.demo1.demo11', type: 'blank'},
+            {state: 'app.demo1.demo11.index'},
+            {state: 'app.demo1.demo11.new'},
+            {state: 'app.demo1.demo11.edit', params: '/:id'},
+            // demo1.2
+            {state: 'app.demo1.demo12', type: 'blank'},
+            {state: 'app.demo1.demo12.index'},
+    
+        ]
+    };
+    // 调用create方法，则会把config的配置转换成vue-router要求的格式
+    const routes = routesDesign.create(config);
+    
+    const router = new Router({routes});
+    // 挂载dom
+    const root = document.createElement('div');
+    document.body.appendChild(root);
+    const vm = new Vue({
+        render: (h) => {
+            return h(main)
+        },
+        router,
+    });
+    vm.$mount(root);
 ```
+
+#### 4、目录结构
+本插件要求所有的路由组件必须放置在src/views文件夹下，并需按照父子路由的名称进行放置组件文件。
+
 上面的路由结构以及对应的组件文件放置如图：
 
 ![views目录结构](https://github.com/lvyulong/vue-routes-design/raw/master/images/jiegou.jpg)
 ![views目录结构](https://github.com/lvyulong/vue-routes-design/raw/master/images/views.jpg)
 
     
+### 三、演示demo
+
+如果还不是很明白，请看演示demo(https://github.com/lvyulong/vue-system)。如果您觉得该项目还有那么点意思，请给个star，多谢！！！
