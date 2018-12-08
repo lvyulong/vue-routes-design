@@ -142,7 +142,7 @@ const config = {
 
 #### 1、下载
 ```javascript
-    npm install vue-routes-design
+    npm install vue-routes-design --save
 ```
 
 #### 2、webpack配置文件
@@ -152,7 +152,7 @@ const config = {
         ...
       resolve:{
         alias: {
-          app: path.resolve(__dirname, '../src/'),  // 请在自己的webpack配置文件中的对应位置加上此行代码
+          app: path.resolve(__dirname, '../src/'),  // 请在自己的webpack配置文件中的对应位置加上此行代码,src的相对路径请根据实际情况做调整
         }
       },
       ...
