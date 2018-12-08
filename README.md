@@ -135,3 +135,58 @@ const config = {
 
 上面的代码就是使用该插件之后的路由配置文件，有没有发现一个路由只用了一行，真的是只有一行，不能再多了。
 
+### 二、Usage
+
+默认使用者已经对vue框架以及webpack有了一些了解，并且已经对vue-cli默认生成的项目结构有过至少一面之缘。
+本插件的用法需要你对自己的项目做出以下调整。
+
+#### 1、webpack配置文件
+本插件对webpack的配置有一个特殊要求，即在webpack配置文件中对src目录定义一个别名。请在自己的webpack配置文件的相应位置加上这行代码。
+```javascript
+        ...
+      resolve:{
+        alias: {
+          app: path.resolve(__dirname, '../src/'),  // 请在自己的webpack配置文件中的对应位置加上此行代码
+        }
+      },
+      ...
+```
+
+#### 2、路由配置以及目录结构
+本插件要求所有的路由组件必须放置在src/views文件夹下，并需按照父子路由的名称进行放置组件文件。
+```javascript
+const config = {
+    default: 'app.user.index',
+    routes: [
+        // 登陆
+        {state: 'login'},
+
+        // 应用主体
+        {state: 'app', defaultLink: 'app.user.index'},
+
+        // 我的账户
+        {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
+        {state: 'app.user.index'},
+        {state: 'app.user.new'},
+        {state: 'app.user.edit', params: '/:id'},
+
+        // demo1
+        {state: 'app.demo1', type: 'blank'},
+        // demo1.1
+        {state: 'app.demo1.demo11', type: 'blank'},
+        {state: 'app.demo1.demo11.index'},
+        {state: 'app.demo1.demo11.new'},
+        {state: 'app.demo1.demo11.edit', params: '/:id'},
+        // demo1.2
+        {state: 'app.demo1.demo12', type: 'blank'},
+        {state: 'app.demo1.demo12.index'},
+
+    ]
+};
+```
+上面的路由结构以及对应的组件文件放置如图：
+
+![views目录结构](https://github.com/lvyulong/vue-routes-design/raw/master/images/jiegou.jpg)
+![views目录结构](https://github.com/lvyulong/vue-routes-design/raw/master/images/views.jpg)
+
+    
