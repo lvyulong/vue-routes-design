@@ -128,7 +128,7 @@ const config = {
 };
 ```
 
-上面的代码就是使用该插件之后的路由配置文件，有没有发现一个路由只用了一行，真的是只有一行，不能再多了。
+上面的代码就是使用该插件之后的路由配置文件，一个路由只用了一行。
 
 ### 二、Usage
 本插件的用法需要对项目做出以下调整。
@@ -205,12 +205,6 @@ const config = {
 #### 4、目录结构
 本插件要求所有的路由组件必须放置在src/views文件夹下，并需按照父子路由的名称进行放置组件文件。
 
-上面的路由结构以及对应的组件文件放置如图：
-
-![views目录结构](https://github.com/lvyulong/vue-routes-design/raw/master/images/jiegou.jpg)
-![views目录结构](https://github.com/lvyulong/vue-routes-design/raw/master/images/views.jpg)
-
-    
 ### 三、演示demo
 
 请看演示[demo](https://github.com/lvyulong/vue-system)。
